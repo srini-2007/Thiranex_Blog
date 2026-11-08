@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f8f7f3">
+    <meta name="description" content="Fieldnotes — thoughtful stories for everyday living.">
+    <title>Fieldnotes — Stories for the in-between</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Fieldnotes home">
+        <span class="brand-mark" aria-hidden="true">f.</span>
+        <span>fieldnotes<span class="brand-period">.</span></span>
+      </a>
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="#stories">Stories</a>
+        <a href="#about">Our journal</a>
+      </nav>
+      <div class="header-actions">
+        <button class="write-button" id="write-button" type="button">Write a story <span aria-hidden="true">↗</span></button>
+        <div id="account-actions">
+          <button class="login-button" id="login-button" type="button">Log in</button>
+          <button class="join-button" id="join-button" type="button">Join us <span aria-hidden="true">↗</span></button>
+        </div>
+        <div class="account-menu" id="account-menu" hidden>
+          <span id="account-name"></span>
+          <button class="login-button" id="logout-button" type="button">Log out</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro" id="about">
+        <div class="eyebrow"><span class="eyebrow-line"></span> A JOURNAL FOR EVERYDAY LIVING</div>
+        <h1>Stories for the<br>in-between<span class="accent-dot">.</span></h1>
+        <div class="intro-bottom">
+          <p>Little observations, new perspectives, and the things that make an ordinary day feel like something more.</p>
+          <a class="discover-link" href="#stories">Find a little inspiration <span aria-hidden="true">↓</span></a>
+        </div>
+        <span class="intro-decoration" aria-hidden="true">№ 01 &nbsp; / &nbsp; VOL. 2026</span>
+      </section>
+
+      <section class="featured-section" aria-labelledby="featured-heading">
+        <div class="section-topline">
+          <h2 id="featured-heading">A little something to start</h2>
+          <span>THE WEEKLY READ &nbsp;·&nbsp; NO. 024</span>
+        </div>
+        <article class="featured-card" id="featured-card"></article>
+      </section>
+
+      <section class="stories-section" id="stories">
+        <div class="stories-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> THE LATEST</div>
+            <h2>Take what <em>resonates.</em></h2>
+          </div>
+          <label class="search-box">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input id="search-input" type="search" placeholder="Find a story..." aria-label="Search stories">
+            <kbd>↵</kbd>
+          </label>
+        </div>
+        <div class="category-list" id="category-list" aria-label="Filter stories by category"></div>
+        <div class="story-grid" id="story-grid" aria-live="polite"></div>
+        <p class="empty-state" id="empty-state" hidden>No stories found. Try another search or category.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="/"><span class="brand-mark" aria-hidden="true">f.</span><span>fieldnotes<span class="brand-period">.</span></span></a>
+      <p>Made for the moments in between.</p>
+      <span>TAKE YOUR TIME &nbsp;·&nbsp; © 2026 FIELDNOTES</span>
+    </footer>
+
+    <dialog class="app-dialog" id="auth-dialog" aria-labelledby="auth-title">
+      <button class="dialog-close" type="button" aria-label="Close dialog">×</button>
+      <div class="dialog-mark" aria-hidden="true">f.</div>
+      <p class="dialog-eyebrow">YOUR LITTLE CORNER OF THE INTERNET</p>
+      <h2 id="auth-title">Welcome to the journal.</h2>
+      <p class="dialog-description" id="auth-description">Join a thoughtful community of curious minds.</p>
+      <div class="auth-switch" id="auth-switch">
+        <button class="active" type="button" data-mode="register">Create account</button>
+        <button type="button" data-mode="login">Log in</button>
+      </div>
+      <form id="auth-form">
+        <label class="form-field" id="name-field">Your name<input name="name" autocomplete="name" minlength="2" maxlength="60" required></label>
+        <label class="form-field">Email address<input name="email" type="email" autocomplete="email" required></label>
+        <label class="form-field">Password<input name="password" type="password" autocomplete="new-password" minlength="10" required><span class="field-hint">At least 10 characters</span></label>
+        <p class="form-error" id="auth-error" role="alert"></p>
+        <button class="form-submit" id="auth-submit" type="submit">Create your account <span aria-hidden="true">↗</span></button>
+      </form>
+      <p class="dialog-footnote">A quiet place to read, write, and connect.</p>
+    </dialog>
+
+    <dialog class="app-dialog story-dialog" id="story-dialog" aria-labelledby="story-dialog-title">
+      <button class="dialog-close" type="button" aria-label="Close dialog">×</button>
+      <p class="dialog-eyebrow">PUT SOMETHING GOOD INTO THE WORLD</p>
+      <h2 id="story-dialog-title">Write a story.</h2>
+      <p class="dialog-description">It doesn't have to be big. It just has to be yours.</p>
+      <form id="story-form">
+        <label class="form-field">Story title<input name="title" maxlength="120" placeholder="A thought worth sharing..." required></label>
+        <label class="form-field">Category<select name="category" required>
+          <option value="Wellbeing">Wellbeing</option><option value="Design">Design</option>
+          <option value="Culture">Culture</option><option value="Living">Living</option><option value="Notes">Notes</option>
+        </select></label>
+        <label class="form-field">A short introduction<textarea name="excerpt" minlength="20" maxlength="220" rows="2" placeholder="What is this story about?" required></textarea></label>
+        <label class="form-field">Your story<textarea name="body" minlength="40" maxlength="20000" rows="7" placeholder="Start wherever you are..." required></textarea></label>
+        <p class="form-error" id="story-error" role="alert"></p>
+        <button class="form-submit" type="submit">Publish your story <span aria-hidden="true">↗</span></button>
+      </form>
+    </dialog>
+
+    <dialog class="app-dialog article-dialog" id="article-dialog" aria-labelledby="article-title">
+      <button class="dialog-close" type="button" aria-label="Close dialog">×</button>
+      <article id="article-content"></article>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

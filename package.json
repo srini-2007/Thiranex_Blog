@@ -1,0 +1,12 @@
+{
+  "name": "thiranex-blog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An editorial blog with accounts, posts, and comments",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}
